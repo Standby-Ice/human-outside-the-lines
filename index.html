@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1.0,
+             maximum-scale=1.0,
+             viewport-fit=cover"
+>
+
+<title>Human Outside the Lines</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    font-family:'Raleway',sans-serif;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+
+    z-index:-5;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.78),
+            rgba(0,0,0,.94)
+        ),
+        url("https://i.postimg.cc/5tFv16Pw/Beauty-Plus-20260917153713923-save.jpg")
+        center/cover no-repeat;
+
+    filter:grayscale(100%);
+
+    transform:scale(1.08);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    padding:17px 18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    z-index:50;
+}
+
+.logo{
+    font-family:'Oswald',sans-serif;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+}
+
+.menu{
+    font-family:'Oswald',sans-serif;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    color:rgba(255,255,255,.5);
+}
+
+
+/* =========================
+   MAIN SCREEN
+========================= */
+
+.hero{
+    position:relative;
+
+    width:100%;
+    height:100svh;
+
+    min-height:620px;
+
+    overflow:hidden;
+
+    padding-top:48px;
+}
+
+
+/* =========================
+   BACKGROUND WORD
+========================= */
+
+.background-word{
+    position:absolute;
+
+    top:74px;
+    left:-5px;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:30vw;
+
+    line-height:.78;
+
+    font-weight:700;
+
+    letter-spacing:-4px;
+
+    color:rgba(255,255,255,.045);
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+.red{
+    color:#e00000;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.top-label{
+    position:absolute;
+
+    top:55px;
+    right:17px;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:rgba(255,255,255,.45);
+
+    z-index:20;
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo{
+    position:absolute;
+
+    top:88px;
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        rotate(-2deg);
+
+    width:67%;
+    height:36vh;
+
+    min-height:235px;
+    max-height:320px;
+
+    overflow:hidden;
+
+    z-index:5;
+
+    border:1px solid rgba(255,255,255,.45);
+
+    clip-path:
+        polygon(
+            4% 0,
+            94% 3%,
+            100% 18%,
+            96% 91%,
+            82% 100%,
+            8% 96%,
+            0 76%,
+            2% 14%
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.85);
+
+    animation:photoIn 1s ease forwards;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    filter:
+        contrast(1.08)
+        saturate(1.12)
+        brightness(.96);
+}
+
+
+/* =========================
+   RED SCAN
+========================= */
+
+.scan{
+    position:absolute;
+
+    top:245px;
+
+    left:10%;
+    right:10%;
+
+    height:1px;
+
+    background:#e00000;
+
+    box-shadow:
+        0 0 12px rgba(224,0,0,.9);
+
+    z-index:15;
+
+    animation:scan 4s ease-in-out infinite;
+}
+
+.scan-number{
+    position:absolute;
+
+    right:0;
+    top:-15px;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    color:#e00000;
+}
+
+
+/* =========================
+   SIDE TEXT
+========================= */
+
+.side-text{
+    position:absolute;
+
+    left:4px;
+    top:260px;
+
+    transform:rotate(-90deg);
+
+    transform-origin:left top;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:7px;
+
+    letter-spacing:2px;
+
+    color:rgba(255,255,255,.4);
+
+    white-space:nowrap;
+
+    z-index:20;
+}
+
+
+/* =========================
+   MAIN TITLE
+========================= */
+
+.hero-title{
+    position:absolute;
+
+    top:292px;
+
+    left:7%;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:15vw;
+
+    line-height:.78;
+
+    letter-spacing:-3px;
+
+    font-weight:700;
+
+    z-index:25;
+
+    text-shadow:
+        0 5px 25px rgba(0,0,0,.9);
+}
+
+.hero-title .red{
+    color:#e00000;
+}
+
+
+/* =========================
+   TEXT AREA
+========================= */
+
+.content{
+    position:absolute;
+
+    left:8%;
+    right:8%;
+
+    top:57%;
+
+    z-index:30;
+}
+
+
+/* =========================
+   NOT MADE TO FIT
+========================= */
+
+.description{
+    margin-bottom:15px;
+}
+
+.description-title{
+    font-family:'Oswald',sans-serif;
+
+    font-size:25px;
+
+    line-height:1;
+
+    letter-spacing:1px;
+
+    font-weight:600;
+
+    margin-bottom:7px;
+}
+
+.description-title::after{
+    content:"";
+
+    display:inline-block;
+
+    width:32px;
+    height:2px;
+
+    background:#e00000;
+
+    margin-left:8px;
+
+    vertical-align:middle;
+}
+
+.description-text{
+    font-size:17px;
+
+    line-height:1.5;
+
+    color:rgba(255,255,255,.88);
+}
+
+
+/* =========================
+   IDEA
+========================= */
+
+.idea{
+    border-top:1px solid rgba(255,255,255,.18);
+
+    padding-top:11px;
+}
+
+.idea-label{
+    font-family:'Oswald',sans-serif;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    color:#e00000;
+
+    margin-bottom:5px;
+}
+
+.idea-title{
+    font-family:'Oswald',sans-serif;
+
+    font-size:24px;
+
+    line-height:.84;
+
+    letter-spacing:1px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+}
+
+.idea-title span{
+    color:#e00000;
+}
+
+.idea-text{
+    font-size:14px;
+
+    line-height:1.45;
+
+    color:rgba(255,255,255,.78);
+}
+
+
+/* =========================
+   ENTER
+========================= */
+
+.enter{
+    position:absolute;
+
+    left:8%;
+    right:8%;
+
+    bottom:17px;
+
+    z-index:40;
+
+    display:flex;
+
+    justify-content:flex-end;
+    align-items:center;
+
+    gap:9px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+}
+
+.enter-line{
+    width:35px;
+    height:1px;
+
+    background:#e00000;
+
+    transition:.3s;
+}
+
+.enter:hover .enter-line{
+    width:55px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes photoIn{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translateX(-50%)
+            translateY(25px)
+            rotate(-5deg)
+            scale(.94);
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+            translateX(-50%)
+            translateY(0)
+            rotate(-2deg)
+            scale(1);
+    }
+}
+
+@keyframes scan{
+
+    0%{
+        opacity:.25;
+        transform:translateY(-35px);
+    }
+
+    50%{
+        opacity:1;
+        transform:translateY(55px);
+    }
+
+    100%{
+        opacity:.25;
+        transform:translateY(-35px);
+    }
+}
+
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media(max-height:680px){
+
+    .photo{
+        top:76px;
+        height:31vh;
+        min-height:205px;
+    }
+
+    .hero-title{
+        top:252px;
+        font-size:14vw;
+    }
+
+    .scan{
+        top:215px;
+    }
+
+    .side-text{
+        top:225px;
+    }
+
+    .content{
+        top:54%;
+    }
+
+    .description-title{
+        font-size:22px;
+    }
+
+    .description-text{
+        font-size:15px;
+    }
+
+    .idea-title{
+        font-size:21px;
+    }
+
+    .idea-text{
+        font-size:12.5px;
+    }
+
+}
+
+
+/* =========================
+   TALL PHONE
+========================= */
+
+@media(min-height:780px) and (max-width:599px){
+
+    .photo{
+        height:38vh;
+        max-height:330px;
+    }
+
+    .hero-title{
+        top:317px;
+    }
+
+    .scan{
+        top:275px;
+    }
+
+    .side-text{
+        top:290px;
+    }
+
+    .content{
+        top:60%;
+    }
+
+}
+
+
+/* =========================
+   TABLET / DESKTOP
+========================= */
+
+@media(min-width:600px){
+
+    .photo{
+        width:52%;
+        max-width:560px;
+        height:50vh;
+        max-height:470px;
+
+        top:90px;
+    }
+
+    .hero-title{
+        left:10%;
+        top:407px;
+
+        font-size:10vw;
+    }
+
+    .content{
+        left:10%;
+        right:10%;
+
+        top:68%;
+    }
+
+    .description-text{
+        font-size:18px;
+    }
+
+    .idea-text{
+        font-size:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="background"></div>
+
+
+<header>
+
+    <div class="logo">
+        HUMAN OUTSIDE
+    </div>
+
+    <div class="menu">
+        001 / HOME
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+
+    <div class="background-word">
+
+        OUT<br>
+
+        <span class="red">
+            SIDE
+        </span>
+
+    </div>
+
+
+    <div class="top-label">
+        001 / HUMAN IDENTITY
+    </div>
+
+
+    <!-- รูปสีรูปเดียว -->
+
+    <div class="photo">
+
+        <img
+            src="https://i.postimg.cc/5tFv16Pw/Beauty-Plus-20260917153713923-save.jpg"
+            alt="Human Outside the Lines"
+        >
+
+    </div>
+
+
+    <div class="scan">
+
+        <span class="scan-number">
+            SCAN / 03
+        </span>
+
+    </div>
+
+
+    <div class="side-text">
+        HUMAN OUTSIDE THE LINES / 2026
+    </div>
+
+
+    <div class="hero-title">
+
+        HUMAN<br>
+
+        <span class="red">
+            OUTSIDE
+        </span>
+
+    </div>
+
+
+    <!-- ข้อความทั้งหมดด้านล่าง -->
+
+    <div class="content">
+
+
+        <div class="description">
+
+            <div class="description-title">
+                NOT MADE TO FIT
+            </div>
+
+            <div class="description-text">
+
+                ฉันไม่ได้พยายามจะอยู่
+                ในเส้นที่ใครวางเอาไว้
+
+            </div>
+
+        </div>
+
+
+        <div class="idea">
+
+            <div class="idea-label">
+                002 / THE IDEA
+            </div>
+
+            <div class="idea-title">
+
+                BREAK<br>
+                THE<br>
+                <span>LINE.</span>
+
+            </div>
+
+            <div class="idea-text">
+
+                บางคนใช้ชีวิตอยู่ในกรอบ
+                บางคนเลือกเดินออกมา
+
+                <br>
+
+                และบางคนไม่ได้รู้ด้วยซ้ำว่า
+                เส้นนั้นถูกขีดขึ้นมาตั้งแต่เมื่อไหร่
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ENTER -->
+
+    <a
+        href="whoami.html"
+        class="enter"
+    >
+
+        ENTER
+
+        <span class="enter-line"></span>
+
+        →
+
+    </a>
+
+
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Stories - Human Outside the Lines</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: #000;
+      color: #fff;
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+
+
+    /* =========================
+       MENU
+       ========================= */
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 15px 55px 15px 10px;
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 13px;
+      flex-wrap: wrap;
+      position: relative;
+      transition: background 0.3s;
+      z-index: 100;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    header a:hover {
+      color: #ff0000;
+    }
+
+
+    /* =========================
+       THEME BUTTON
+       ========================= */
+
+    .theme-button {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 24px;
+      height: 24px;
+
+      border-radius: 50%;
+      border: 2px solid #fff;
+
+      background: #111;
+      cursor: pointer;
+
+      transition:
+        background 0.3s,
+        border-color 0.3s,
+        transform 0.2s;
+    }
+
+    .theme-button:hover {
+      transform: translateY(-50%) scale(1.12);
+    }
+
+
+    /* =========================
+       LIGHT MODE
+       ========================= */
+
+    body.light-mode {
+      background: #fff;
+      color: #111;
+    }
+
+    body.light-mode header {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    body.light-mode header a {
+      color: #111;
+    }
+
+    body.light-mode header a:hover {
+      color: #ff0000;
+    }
+
+    body.light-mode .theme-button {
+      background: #fff;
+      border-color: #111;
+    }
+
+    body.light-mode .stories-container {
+      background: rgba(245, 245, 245, 0.95);
+      border-color: #ccc;
+    }
+
+    body.light-mode .stories-header h1 {
+      color: #ff0000;
+      text-shadow: none;
+    }
+
+    body.light-mode .stories-header p {
+      color: #555;
+    }
+
+    body.light-mode .post-card {
+      background: #fff;
+      border-color: #ccc;
+      color: #111;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    body.light-mode .post-title {
+      color: #111;
+    }
+
+    body.light-mode .post-text {
+      color: #555;
+    }
+
+    body.light-mode .post-number {
+      color: #ff0000;
+    }
+
+    body.light-mode .post-bottom {
+      color: #555;
+      border-top-color: #ddd;
+    }
+
+    body.light-mode .story-counter {
+      color: #555;
+    }
+
+    body.light-mode .story-title {
+      color: #111;
+    }
+
+    body.light-mode .hint {
+      color: #777;
+    }
+
+
+    /* =========================
+       STORIES BACKGROUND
+       ========================= */
+
+    .stories-page {
+      min-height: calc(100vh - 55px);
+      padding: 30px 15px 50px;
+      background: #000;
+    }
+
+    body.light-mode .stories-page {
+      background: #fff;
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+       ========================= */
+
+    .stories-container {
+      width: 100%;
+      max-width: 650px;
+      min-height: 600px;
+
+      margin: 0 auto;
+
+      padding: 22px 15px 28px;
+
+      background: rgba(10, 10, 10, 0.78);
+
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+
+      overflow: hidden;
+
+      transition:
+        background 0.3s,
+        border-color 0.3s;
+    }
+
+
+    /* =========================
+       STORIES HEADER
+       ========================= */
+
+    .stories-header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .stories-header h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 42px;
+      letter-spacing: 2px;
+
+      color: #ff0000;
+
+      margin: 0;
+
+      text-shadow: 2px 2px 8px #000;
+
+      transition: color 0.3s;
+    }
+
+    .stories-header p {
+      margin: 10px 0 0;
+
+      font-size: 15px;
+      color: #ccc;
+
+      line-height: 1.6;
+
+      transition: color 0.3s;
+    }
+
+
+    /* =========================
+       3D STAGE
+       ========================= */
+
+    .stage {
+      position: relative;
+
+      width: 100%;
+      height: 390px;
+
+      perspective: 1000px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      cursor: grab;
+
+      touch-action: pan-y;
+
+      user-select: none;
+    }
+
+    .stage:active {
+      cursor: grabbing;
+    }
+
+
+    /* =========================
+       SPINNER
+       ========================= */
+
+    .spinner {
+      position: relative;
+
+      width: 190px;
+      height: 270px;
+
+      transform-style: preserve-3d;
+
+      transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+
+    /* =========================
+       POST CARD
+       ========================= */
+
+    .post-card {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 190px;
+      height: 270px;
+
+      display: flex;
+      flex-direction: column;
+
+      background: #151515;
+
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      color: #fff;
+      text-decoration: none;
+
+      backface-visibility: hidden;
+
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.55);
+
+      transition:
+        background 0.3s,
+        border-color 0.3s,
+        box-shadow 0.3s;
+    }
+
+
+    /* =========================
+       POST IMAGE
+       ========================= */
+
+    .post-image {
+      width: 100%;
+      height: 125px;
+
+      object-fit: cover;
+
+      display: block;
+
+      flex-shrink: 0;
+
+      background: #222;
+    }
+
+
+    /* =========================
+       POST CONTENT
+       ========================= */
+
+    .post-content {
+      padding: 12px 13px 8px;
+
+      display: flex;
+      flex-direction: column;
+
+      flex: 1;
+    }
+
+    .post-number {
+      font-family: 'Oswald', sans-serif;
+
+      font-size: 11px;
+
+      color: #ff0000;
+
+      letter-spacing: 1.5px;
+
+      margin-bottom: 7px;
+
+      transition: color 0.3s;
+    }
+
+    .post-title {
+      font-family: 'Raleway', sans-serif;
+
+      font-size: 15px;
+
+      font-weight: 600;
+
+      line-height: 1.4;
+
+      color: #fff;
+
+      transition: color 0.3s;
+    }
+
+    .post-text {
+      font-size: 11px;
+
+      color: #aaa;
+
+      line-height: 1.5;
+
+      margin-top: auto;
+
+      padding-top: 8px;
+
+      transition: color 0.3s;
+    }
+
+
+    /* =========================
+       POST BOTTOM
+       ========================= */
+
+    .post-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 9px 12px;
+
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+      font-family: 'Oswald', sans-serif;
+
+      font-size: 10px;
+
+      letter-spacing: 1px;
+
+      color: #aaa;
+
+      transition:
+        color 0.3s,
+        border-color 0.3s;
+    }
+
+
+    /* =========================
+       STORY INFO
+       ========================= */
+
+    .stories-info {
+      text-align: center;
+
+      margin-top: 25px;
+
+      min-height: 95px;
+    }
+
+    .story-counter {
+      font-family: 'Oswald', sans-serif;
+
+      font-size: 13px;
+
+      letter-spacing: 2px;
+
+      color: #aaa;
+
+      margin-bottom: 8px;
+
+      transition: color 0.3s;
+    }
+
+    .story-title {
+      font-family: 'Oswald', sans-serif;
+
+      font-size: 18px;
+
+      line-height: 1.5;
+
+      color: #fff;
+
+      margin: 0 auto;
+
+      max-width: 500px;
+
+      transition: color 0.3s;
+    }
+
+    .hint {
+      margin-top: 15px;
+
+      font-size: 11px;
+
+      color: #888;
+
+      transition: color 0.3s;
+    }
+
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 600px) {
+
+      header {
+        gap: 14px;
+        font-size: 12px;
+        padding-right: 50px;
+      }
+
+      .theme-button {
+        right: 15px;
+      }
+
+      .stories-page {
+        padding: 20px 10px 40px;
+        background: #000;
+      }
+
+      body.light-mode .stories-page {
+        background: #fff;
+      }
+
+      .stories-container {
+        min-height: 620px;
+        padding: 20px 10px 25px;
+      }
+
+      .stories-header {
+        margin-bottom: 22px;
+      }
+
+      .stories-header h1 {
+        font-size: 34px;
+      }
+
+      .stories-header p {
+        font-size: 14px;
+      }
+
+      .stage {
+        height: 350px;
+      }
+
+      .spinner {
+        width: 175px;
+        height: 250px;
+      }
+
+      .post-card {
+        width: 175px;
+        height: 250px;
+      }
+
+      .post-image {
+        height: 115px;
+      }
+
+      .post-title {
+        font-size: 14px;
+      }
+
+      .stories-info {
+        margin-top: 25px;
+        min-height: 95px;
+      }
+
+      .story-title {
+        font-size: 17px;
+      }
+
+    }
+
+
+    /* =========================
+       VERY SMALL SCREEN
+       ========================= */
+
+    @media (max-width: 380px) {
+
+      .stories-container {
+        min-height: 600px;
+      }
+
+      .stage {
+        height: 340px;
+      }
+
+      .spinner {
+        width: 165px;
+        height: 238px;
+      }
+
+      .post-card {
+        width: 165px;
+        height: 238px;
+      }
+
+      .post-image {
+        height: 105px;
+      }
+
+      .stories-info {
+        margin-top: 22px;
+      }
+
+      .story-title {
+        font-size: 16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       MENU
+       ========================= -->
+
+  <header>
+
+    <a href="index.html">Home</a>
+
+    <a href="whoami.html">Who am I?</a>
+
+    <a href="thoughts.html">Thoughts</a>
+
+    <a href="stories.html">Stories</a>
+
+
+    <!-- THEME BUTTON -->
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      aria-label="Change theme">
+    </button>
+
+  </header>
+
+
+  <!-- =========================
+       STORIES PAGE
+       ========================= -->
+
+  <main class="stories-page">
+
+    <section class="stories-container">
+
+
+      <!-- =========================
+           HEADER
+           ========================= -->
+
+      <div class="stories-header">
+
+        <h1>
+          HUMAN OUTSIDE THE LINES
+        </h1>
+
+        <p>
+          Stories from my life, my thoughts,
+          and the people I have met along the way.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           3D CAROUSEL
+           ========================= -->
+
+      <div
+        class="stage"
+        id="stage">
+
+        <div
+          class="spinner"
+          id="spinner">
+
+
+          <!-- =========================
+               STORY 01
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/p/1B5NFEMH5Q/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/kMNhJKVQ/FB-IMG-1789377796762.jpg"
+              alt="นั่งคุยกับคนที่โลกไม่สนใจ">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 01
+              </div>
+
+              <div class="post-title">
+                นั่งคุยกับคนที่โลกไม่สนใจ
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 02
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/p/17aTVX5h1W/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/1tGMz1zQ/FB-IMG-1789377904294.jpg"
+              alt="เราไม่จำเป็นต้องพร้อมตลอด">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 02
+              </div>
+
+              <div class="post-title">
+                เราไม่จำเป็นต้องพร้อมตลอด
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 03
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/1DBGNAwU27/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/Pxjz9VMT/FB-IMG-1789377991113.jpg"
+              alt="บางครั้งคนเราไม่ได้ต้องการอะไรเยอะแยะ">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 03
+              </div>
+
+              <div class="post-title">
+                บางครั้งคนเราไม่ได้ต้องการอะไรเยอะแยะ
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 04
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/1Hh3iQyLCa/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/fb4xSqpb/FB-IMG-1789378065342.jpg"
+              alt="ช้าแต่มั่นคง">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 04
+              </div>
+
+              <div class="post-title">
+                ช้าแต่มั่นคง
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 05
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/1PobbyJSWP/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/DfCLPwHg/FB-IMG-1789378148680.jpg"
+              alt="อคติที่เกิดโดยไม่รู้ตัว">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 05
+              </div>
+
+              <div class="post-title">
+                อคติที่เกิดโดยไม่รู้ตัว
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 06
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/1ByGrHxv5D/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/L84dKvNn/FB-IMG-1789378232679.jpg"
+              alt="ทุกการกระทำของมนุษย์มีเหตุผล">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 06
+              </div>
+
+              <div class="post-title">
+                ทุกการกระทำของมนุษย์มีเหตุผล
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 07
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/1MHp6hag4d/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/1R61p8fT/FB-IMG-1789378297264.jpg"
+              alt="ทำไมเราถึงตีความทุกอย่างเข้าข้างตัวเอง">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 07
+              </div>
+
+              <div class="post-title">
+                ทำไมเราถึงตีความทุกอย่างเข้าข้างตัวเอง
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 08
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/19BQu2xp5d/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/d1ZPN1ny/FB-IMG-1789378356068.jpg"
+              alt="เราไม่ได้เหนื่อยเพราะโลก เราเหนื่อยเพราะความคิดของตัวเองหรือเปล่า">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 08
+              </div>
+
+              <div class="post-title">
+                เราไม่ได้เหนื่อยเพราะโลก เราเหนื่อยเพราะความคิดของตัวเองหรือเปล่า
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 09
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/1BbRGw2Jx1/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/gc6mNMT9/FB-IMG-1789378423300.jpg"
+              alt="ชีวิตธรรมดาไม่ได้หมายความว่าไม่มีความหมาย">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 09
+              </div>
+
+              <div class="post-title">
+                ชีวิตธรรมดาไม่ได้หมายความว่าไม่มีความหมาย
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+          <!-- =========================
+               STORY 10
+               ========================= -->
+
+          <a
+            class="post-card"
+            href="https://www.facebook.com/share/1EmQaug8Wk/"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+              class="post-image"
+              src="https://i.postimg.cc/HLsTzdf6/FB-IMG-1789378477565.jpg"
+              alt="การทำงานกับการใช้ชีวิต">
+
+            <div class="post-content">
+
+              <div class="post-number">
+                STORY 10
+              </div>
+
+              <div class="post-title">
+                การทำงานกับการใช้ชีวิต
+              </div>
+
+              <div class="post-text">
+                อ่านเรื่องราวนี้บน Facebook
+              </div>
+
+            </div>
+
+            <div class="post-bottom">
+              <span>ICE</span>
+              <span>READ →</span>
+            </div>
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           STORY INFO
+           ========================= -->
+
+      <div class="stories-info">
+
+        <div
+          class="story-counter"
+          id="counter">
+          01 / 10
+        </div>
+
+        <h2
+          class="story-title"
+          id="storyTitle">
+          นั่งคุยกับคนที่โลกไม่สนใจ
+        </h2>
+
+        <div class="hint">
+          Drag to explore · Tap a story to read on Facebook
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       THEME SCRIPT
+       ========================= -->
+
+  <script>
+
+    const themeButton =
+      document.getElementById("themeButton");
+
+
+    function setTheme(theme) {
+
+      if (theme === "light") {
+
+        document.body.classList.add("light-mode");
+
+        localStorage.setItem(
+          "site-theme",
+          "light"
+        );
+
+      } else {
+
+        document.body.classList.remove("light-mode");
+
+        localStorage.setItem(
+          "site-theme",
+          "dark"
+        );
+
+      }
+
+    }
+
+
+    themeButton.addEventListener(
+      "click",
+      function() {
+
+        if (
+          document.body.classList.contains(
+            "light-mode"
+          )
+        ) {
+
+          setTheme("dark");
+
+        } else {
+
+          setTheme("light");
+
+        }
+
+      }
+    );
+
+
+    const savedTheme =
+      localStorage.getItem("site-theme");
+
+
+    if (savedTheme === "light") {
+
+      setTheme("light");
+
+    } else {
+
+      setTheme("dark");
+
+    }
+
+
+    /* =========================
+       3D CAROUSEL SCRIPT
+       ========================= */
+
+    const stage =
+      document.getElementById("stage");
+
+    const spinner =
+      document.getElementById("spinner");
+
+    const cards =
+      document.querySelectorAll(".post-card");
+
+    const counter =
+      document.getElementById("counter");
+
+    const storyTitle =
+      document.getElementById("storyTitle");
+
+
+    const titles = [
+
+      "นั่งคุยกับคนที่โลกไม่สนใจ",
+
+      "เราไม่จำเป็นต้องพร้อมตลอด",
+
+      "บางครั้งคนเราไม่ได้ต้องการอะไรเยอะแยะ",
+
+      "ช้าแต่มั่นคง",
+
+      "อคติที่เกิดโดยไม่รู้ตัว",
+
+      "ทุกการกระทำของมนุษย์มีเหตุผล",
+
+      "ทำไมเราถึงตีความทุกอย่างเข้าข้างตัวเอง",
+
+      "เราไม่ได้เหนื่อยเพราะโลก เราเหนื่อยเพราะความคิดของตัวเองหรือเปล่า",
+
+      "ชีวิตธรรมดาไม่ได้หมายความว่าไม่มีความหมาย",
+
+      "การทำงานกับการใช้ชีวิต"
+
+    ];
+
+
+    const itemCount =
+      cards.length;
+
+    const angle =
+      360 / itemCount;
+
+    const radius =
+      285;
+
+
+    let currentAngle = 0;
+
+    let currentIndex = 0;
+
+    let isDragging = false;
+
+    let startX = 0;
+
+    let startAngle = 0;
+
+
+    /* =========================
+       PLACE CARDS
+       ========================= */
+
+    cards.forEach(
+      function(card, index) {
+
+        card.style.transform =
+          `rotateY(${index * angle}deg) translateZ(${radius}px)`;
+
+      }
+    );
+
+
+    /* =========================
+       UPDATE INFO
+       ========================= */
+
+    function updateInfo() {
+
+      let index =
+        Math.round(
+          -currentAngle / angle
+        );
+
+
+      index =
+        (
+          (index % itemCount) +
+          itemCount
+        ) % itemCount;
+
+
+      currentIndex =
+        index;
+
+
+      counter.textContent =
+        `${String(index + 1).padStart(2, "0")} / ${String(itemCount).padStart(2, "0")}`;
+
+
+      storyTitle.textContent =
+        titles[index];
+
+    }
+
+
+    /* =========================
+       ROTATE
+       ========================= */
+
+    function rotateCarousel(
+      angleValue
+    ) {
+
+      currentAngle =
+        angleValue;
+
+      spinner.style.transform =
+        `rotateY(${currentAngle}deg)`;
+
+      updateInfo();
+
+    }
+
+
+    /* =========================
+       MOUSE DRAG
+       ========================= */
+
+    stage.addEventListener(
+      "mousedown",
+      function(event) {
+
+        isDragging = true;
+
+        startX =
+          event.clientX;
+
+        startAngle =
+          currentAngle;
+
+        spinner.style.transition =
+          "none";
+
+      }
+    );
+
+
+    window.addEventListener(
+      "mousemove",
+      function(event) {
+
+        if (!isDragging) {
+          return;
+        }
+
+        const deltaX =
+          event.clientX - startX;
+
+        const sensitivity =
+          0.45;
+
+        rotateCarousel(
+          startAngle +
+          deltaX * sensitivity
+        );
+
+      }
+    );
+
+
+    window.addEventListener(
+      "mouseup",
+      function() {
+
+        if (!isDragging) {
+          return;
+        }
+
+        isDragging = false;
+
+        snapToCard();
+
+      }
+    );
+
+
+    /* =========================
+       TOUCH DRAG
+       ========================= */
+
+    stage.addEventListener(
+      "touchstart",
+      function(event) {
+
+        isDragging = true;
+
+        startX =
+          event.touches[0].clientX;
+
+        startAngle =
+          currentAngle;
+
+        spinner.style.transition =
+          "none";
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    stage.addEventListener(
+      "touchmove",
+      function(event) {
+
+        if (!isDragging) {
+          return;
+        }
+
+        const deltaX =
+          event.touches[0].clientX -
+          startX;
+
+        const sensitivity =
+          0.45;
+
+        rotateCarousel(
+          startAngle +
+          deltaX * sensitivity
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    stage.addEventListener(
+      "touchend",
+      function() {
+
+        if (!isDragging) {
+          return;
+        }
+
+        isDragging = false;
+
+        snapToCard();
+
+      }
+    );
+
+
+    /* =========================
+       SNAP TO CARD
+       ========================= */
+
+    function snapToCard() {
+
+      const nearestIndex =
+        Math.round(
+          -currentAngle / angle
+        );
+
+
+      currentAngle =
+        -nearestIndex * angle;
+
+
+      spinner.style.transition =
+        "transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1)";
+
+
+      spinner.style.transform =
+        `rotateY(${currentAngle}deg)`;
+
+
+      updateInfo();
+
+    }
+
+
+    /* =========================
+       INITIAL STATE
+       ========================= */
+
+    spinner.style.transform =
+      "rotateY(0deg)";
+
+    updateInfo();
+
+  </script>
+
+
+</body>
+
+</html>

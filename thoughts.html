@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Thoughts - Human Outside the Lines</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: #111;
+      color: #fff;
+      transition: background 0.3s, color 0.3s;
+    }
+
+
+    /* =========================
+       MENU
+       ========================= */
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 15px 55px 15px 10px;
+      background: rgba(0, 0, 0, 0.9);
+      font-size: 13px;
+      flex-wrap: wrap;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    header a:hover {
+      color: #ff0000;
+    }
+
+
+    /* =========================
+       THEME BUTTON
+       ========================= */
+
+    .theme-button {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 24px;
+      height: 24px;
+
+      border-radius: 50%;
+      border: 2px solid #fff;
+
+      background: #111;
+      cursor: pointer;
+
+      transition:
+        background 0.3s,
+        border-color 0.3s,
+        transform 0.2s;
+    }
+
+    .theme-button:hover {
+      transform: translateY(-50%) scale(1.12);
+    }
+
+
+    /* =========================
+       LIGHT MODE
+       ========================= */
+
+    body.light-mode {
+      background: #fff;
+      color: #111;
+    }
+
+    body.light-mode header {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    body.light-mode header a {
+      color: #111;
+    }
+
+    body.light-mode header a:hover {
+      color: #ff0000;
+    }
+
+    body.light-mode .theme-button {
+      background: #fff;
+      border-color: #111;
+    }
+
+    body.light-mode .page-title p {
+      color: #444;
+    }
+
+    body.light-mode .article h2 {
+      color: #ff0000;
+    }
+
+    body.light-mode .thai-title {
+      color: #555;
+    }
+
+    body.light-mode .article p {
+      color: #222;
+    }
+
+    body.light-mode .thai {
+      color: #555;
+    }
+
+    body.light-mode .highlight {
+      color: #111;
+    }
+
+    body.light-mode .thai-highlight {
+      color: #555;
+    }
+
+    body.light-mode .divider {
+      background: #bbb;
+    }
+
+
+    /* =========================
+       PAGE TITLE
+       ========================= */
+
+    .page-title {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    .page-title h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 42px;
+      color: #ff0000;
+      margin: 0;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    .page-title p {
+      font-size: 17px;
+      color: #ccc;
+      margin-top: 12px;
+      transition: color 0.3s;
+    }
+
+
+    /* =========================
+       ARTICLE
+       ========================= */
+
+    .article {
+      max-width: 850px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+
+    /* =========================
+       รูปบทความ
+       ========================= */
+
+    .article-image {
+      width: 100%;
+      max-width: 850px;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 35px;
+      border-radius: 8px;
+    }
+
+
+    /* =========================
+       หัวข้อ
+       ========================= */
+
+    .article h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 32px;
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+
+
+    /* =========================
+       หัวข้อภาษาไทย
+       ========================= */
+
+    .thai-title {
+      font-size: 22px;
+      color: #ccc;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       เนื้อหา
+       ========================= */
+
+    .article p {
+      font-size: 17px;
+      line-height: 1.9;
+      color: #eee;
+      margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+
+
+    /* =========================
+       ภาษาไทย
+       ========================= */
+
+    .thai {
+      color: #aaa;
+      margin-bottom: 30px;
+      transition: color 0.3s;
+    }
+
+
+    /* =========================
+       HIGHLIGHT
+       ========================= */
+
+    .highlight {
+      font-family: 'Oswald', sans-serif;
+      font-size: 25px;
+      color: #fff;
+      text-align: center;
+      margin: 45px 0 10px;
+      line-height: 1.5;
+      transition: color 0.3s;
+    }
+
+
+    .thai-highlight {
+      font-size: 21px;
+      color: #aaa;
+      text-align: center;
+      margin: 0 0 45px;
+      line-height: 1.6;
+      transition: color 0.3s;
+    }
+
+
+    /* =========================
+       เส้นแบ่ง
+       ========================= */
+
+    .divider {
+      width: 70%;
+      height: 1px;
+      background: #555;
+      margin: 50px auto;
+      transition: background 0.3s;
+    }
+
+
+    /* =========================
+       MOBILE
+       ========================= */
+
+    @media (max-width: 600px) {
+
+      header {
+        gap: 14px;
+        font-size: 12px;
+        padding-right: 50px;
+      }
+
+      .theme-button {
+        right: 15px;
+      }
+
+      .page-title {
+        padding-top: 45px;
+      }
+
+      .page-title h1 {
+        font-size: 34px;
+      }
+
+      .page-title p {
+        font-size: 15px;
+      }
+
+      .article {
+        padding: 0 15px;
+      }
+
+      .article-image {
+        width: 100%;
+        height: 220px;
+        border-radius: 6px;
+      }
+
+      .article h2 {
+        font-size: 27px;
+      }
+
+      .thai-title {
+        font-size: 19px;
+      }
+
+      .article p {
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .thai {
+        font-size: 15px;
+      }
+
+      .highlight {
+        font-size: 21px;
+      }
+
+      .thai-highlight {
+        font-size: 18px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       MENU
+       ========================= -->
+
+  <header>
+
+    <a href="index.html">Home</a>
+
+    <a href="whoami.html">Who am I?</a>
+
+    <a href="thoughts.html">Thoughts</a>
+
+    <a href="stories.html">Stories</a>    
+
+
+    <!-- THEME BUTTON -->
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      aria-label="Change theme">
+    </button>
+
+  </header>
+
+
+  <!-- =========================
+       PAGE TITLE
+       ========================= -->
+
+  <section class="page-title">
+
+    <h1>THOUGHTS</h1>
+
+    <p>
+      Thoughts that don't have to stay inside the lines.
+    </p>
+
+    <p class="thai">
+      ความคิดที่ไม่จำเป็นต้องอยู่ในกรอบ
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       ARTICLE
+       ========================= -->
+
+  <article class="article">
+
+
+    <!-- =========================
+         รูปบทความ
+         ========================= -->
+
+    <img
+      class="article-image"
+      src="https://i.postimg.cc/gcTBNcPz/copilot-image-1789294143007.png"
+      alt="Thoughts">
+
+
+    <!-- =========================
+         ARTICLE TITLE
+         ========================= -->
+
+    <h2>
+      There Is No Single Definition of Success
+    </h2>
+
+    <div class="thai-title">
+      ความสำเร็จไม่ได้มีความหมายเพียงแบบเดียว
+    </div>
+
+
+    <!-- =========================
+         PARAGRAPH 1
+         ========================= -->
+
+    <p>
+      We grow up being told that we have to study this way,
+      work this way, earn this much money, and become successful
+      in a certain way.
+    </p>
+
+    <p class="thai">
+      เราเติบโตมากับการถูกบอกว่า
+      เราต้องเรียนแบบนี้ ต้องทำงานแบบนี้
+      ต้องหาเงินให้ได้เท่านี้
+      และต้องประสบความสำเร็จในแบบที่คนอื่นกำหนด
+    </p>
+
+
+    <!-- =========================
+         PARAGRAPH 2
+         ========================= -->
+
+    <p>
+      But honestly...
+    </p>
+
+    <p class="thai">
+      แต่เอาจริง ๆ แล้ว...
+    </p>
+
+
+    <!-- =========================
+         HIGHLIGHT
+         ========================= -->
+
+    <div class="highlight">
+      Who decided that this is the only way a life should be lived?
+    </div>
+
+    <div class="thai-highlight">
+      ใครเป็นคนกำหนดว่า
+      ชีวิตต้องใช้ชีวิตด้วยวิธีนี้เท่านั้น?
+    </div>
+
+
+    <!-- =========================
+         PARAGRAPH 3
+         ========================= -->
+
+    <p>
+      Why should one person's life have to be measured by the
+      same ruler as someone else's?
+    </p>
+
+    <p class="thai">
+      ทำไมชีวิตของคนหนึ่งคน
+      ถึงต้องถูกวัดด้วยไม้บรรทัดอันเดียวกับชีวิตของคนอื่น?
+    </p>
+
+
+    <!-- =========================
+         PARAGRAPH 4
+         ========================= -->
+
+    <p>
+      Some people are good at school but struggle with life.
+      Some people don't have degrees but know how to survive.
+      Some people have money but are not happy.
+      And some people may have almost nothing,
+      yet they still find a way to get up and keep going every day.
+    </p>
+
+    <p class="thai">
+      บางคนเรียนเก่ง แต่ใช้ชีวิตจริงกลับลำบาก
+      บางคนไม่มีวุฒิการศึกษา แต่รู้ว่าจะเอาตัวรอดอย่างไร
+      บางคนมีเงินมากมายแต่ไม่มีความสุข
+      และบางคนแทบไม่มีอะไรเลย
+      แต่ก็ยังหาวิธีลุกขึ้นมาใช้ชีวิตต่อในทุกวัน
+    </p>
+
+
+    <!-- =========================
+         HIGHLIGHT
+         ========================= -->
+
+    <div class="highlight">
+      I don't really believe there is one “right” way to live.
+    </div>
+
+    <div class="thai-highlight">
+      ฉันไม่ได้เชื่อจริง ๆ ว่า
+      มีวิธีใช้ชีวิตที่ “ถูกต้อง” เพียงวิธีเดียว
+    </div>
+
+
+    <!-- =========================
+         PARAGRAPH 5
+         ========================= -->
+
+    <p>
+      I believe every person has their own path.
+    </p>
+
+    <p class="thai">
+      ฉันเชื่อว่าทุกคนมีเส้นทางของตัวเอง
+    </p>
+
+
+    <!-- =========================
+         PARAGRAPH 6
+         ========================= -->
+
+    <p>
+      And sometimes, walking outside the lines doesn't mean
+      that we are lost.
+    </p>
+
+    <p class="thai">
+      และบางครั้ง
+      การเดินออกนอกเส้นไม่ได้หมายความว่าเราหลงทาง
+    </p>
+
+
+    <!-- =========================
+         HIGHLIGHT
+         ========================= -->
+
+    <div class="highlight">
+      Maybe we simply never wanted to follow the lines
+      someone else drew for us.
+    </div>
+
+    <div class="thai-highlight">
+      บางทีเราอาจไม่เคยต้องการเดินตามเส้น
+      ที่คนอื่นขีดเอาไว้ให้เรา
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- =========================
+         SECOND PART
+         ========================= -->
+
+    <p>
+      This is a place for my thoughts.
+    </p>
+
+    <p class="thai">
+      ที่นี่คือพื้นที่สำหรับความคิดของฉัน
+    </p>
+
+
+    <p>
+      Things I question.
+      Things I notice.
+      Things I disagree with.
+      Things I once believed and later changed my mind about.
+    </p>
+
+    <p class="thai">
+      สิ่งที่ฉันตั้งคำถาม
+      สิ่งที่ฉันสังเกตเห็น
+      สิ่งที่ฉันไม่เห็นด้วย
+      และสิ่งที่ครั้งหนึ่งฉันเคยเชื่อ
+      แต่ภายหลังเปลี่ยนความคิด
+    </p>
+
+
+    <!-- =========================
+         PARAGRAPH
+         ========================= -->
+
+    <p>
+      You don't have to agree with me.
+    </p>
+
+    <p class="thai">
+      คุณไม่จำเป็นต้องเห็นด้วยกับฉัน
+    </p>
+
+
+    <div class="highlight">
+      Just think for yourself.
+    </div>
+
+    <div class="thai-highlight">
+      แค่คิดด้วยตัวเอง
+    </div>
+
+
+    <!-- =========================
+         FINAL
+         ========================= -->
+
+    <p>
+      Because sometimes the things we believe today
+      are not really our own thoughts.
+    </p>
+
+    <p class="thai">
+      เพราะบางครั้ง สิ่งที่เราเชื่อในวันนี้
+      อาจไม่ใช่ความคิดของเราเองจริง ๆ
+    </p>
+
+
+    <p>
+      Sometimes they are simply lines
+      someone else drew for us a long time ago.
+    </p>
+
+    <p class="thai">
+      บางครั้งมันก็เป็นเพียงเส้น
+      ที่คนอื่นขีดเอาไว้ให้เราตั้งนานแล้ว
+    </p>
+
+
+  </article>
+
+
+  <!-- =========================
+       THEME SCRIPT
+       ========================= -->
+
+  <script>
+
+    const themeButton =
+      document.getElementById("themeButton");
+
+
+    function setTheme(theme) {
+
+      if (theme === "light") {
+
+        document.body.classList.add("light-mode");
+
+        localStorage.setItem(
+          "site-theme",
+          "light"
+        );
+
+      } else {
+
+        document.body.classList.remove("light-mode");
+
+        localStorage.setItem(
+          "site-theme",
+          "dark"
+        );
+
+      }
+
+    }
+
+
+    themeButton.addEventListener(
+      "click",
+      function() {
+
+        if (
+          document.body.classList.contains(
+            "light-mode"
+          )
+        ) {
+
+          setTheme("dark");
+
+        } else {
+
+          setTheme("light");
+
+        }
+
+      }
+    );
+
+
+    const savedTheme =
+      localStorage.getItem("site-theme");
+
+
+    if (savedTheme === "light") {
+
+      setTheme("light");
+
+    } else {
+
+      setTheme("dark");
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
