@@ -1,727 +1,1736 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Thoughts - Human Outside the Lines</title>
+<meta charset="UTF-8">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1.0,
+             maximum-scale=1.0,
+             viewport-fit=cover"
+>
 
-  <style>
+<title>Thoughts — Human Outside the Lines</title>
 
-    * {
-      box-sizing: border-box;
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#111;
+    color:#fff;
+    font-family:'Raleway',sans-serif;
+    transition:background .35s ease,color .35s ease;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+
+    padding:15px 55px 15px 10px;
+
+    background:rgba(0,0,0,.92);
+    backdrop-filter:blur(8px);
+}
+
+header a{
+    color:#fff;
+    text-decoration:none;
+
+    font-family:'Oswald',sans-serif;
+    font-size:14px;
+    letter-spacing:1px;
+
+    transition:.25s;
+}
+
+header a:hover{
+    color:#e00000;
+}
+
+.theme-button{
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:24px;
+    height:24px;
+
+    border:1px solid #fff;
+    border-radius:50%;
+
+    background:#111;
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.theme-button:hover{
+    transform:translateY(-50%) scale(1.1);
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+    position:relative;
+
+    min-height:72vh;
+    margin-top:54px;
+
+    display:flex;
+    align-items:flex-end;
+
+    overflow:hidden;
+    background:#000;
+}
+
+.hero-image{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    /*
+       ซูมออกจากเดิม
+       เห็นตัวและบรรยากาศรอบข้างมากขึ้น
+    */
+    object-position:center center;
+    transform:scale(.94);
+
+    filter:
+        grayscale(100%)
+        contrast(1.08)
+        brightness(.75);
+}
+
+
+/* ขยายพื้นดำด้านหลัง
+   เพื่อไม่ให้เห็นขอบตอนซูมออก */
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:-5%;
+
+    background:#000;
+
+    z-index:0;
+}
+
+
+.hero-image{
+    z-index:1;
+}
+
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.03) 0%,
+            rgba(0,0,0,.12) 35%,
+            rgba(0,0,0,.93) 100%
+        );
+
+    z-index:2;
+}
+
+
+/* ================= SUNLIGHT ================= */
+
+.sunlight{
+    position:absolute;
+
+    width:70%;
+    height:70%;
+
+    left:-15%;
+    top:-15%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,255,255,.25) 0%,
+            rgba(255,255,255,.09) 28%,
+            transparent 70%
+        );
+
+    filter:blur(18px);
+
+    transform:rotate(-18deg);
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+
+.sun-ray{
+    position:absolute;
+
+    width:140%;
+    height:25%;
+
+    left:-25%;
+    top:10%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.11),
+            transparent
+        );
+
+    filter:blur(15px);
+
+    transform:rotate(-20deg);
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+
+/* ================= HERO CONTENT ================= */
+
+.hero-content{
+    position:relative;
+    z-index:3;
+
+    width:100%;
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:
+        80px
+        7vw
+        35px;
+
+    transform:translateY(7em);
+}
+
+
+.hero-number{
+    font-family:'Oswald',sans-serif;
+
+    font-size:13px;
+    letter-spacing:3px;
+
+    color:#e00000;
+
+    margin-bottom:14px;
+}
+
+
+.hero-title{
+    font-family:'Oswald',sans-serif;
+
+    font-size:
+        clamp(70px,14vw,190px);
+
+    font-weight:600;
+    line-height:.82;
+
+    letter-spacing:-3px;
+
+    color:#e00000;
+
+    text-shadow:
+        0 0 25px rgba(224,0,0,.16);
+}
+
+
+.hero-subtitle{
+    margin-top:25px;
+
+    font-size:
+        clamp(15px,2vw,21px);
+
+    line-height:1.7;
+
+    max-width:700px;
+
+    color:#fff;
+}
+
+
+.hero-subtitle span{
+    display:block;
+
+    font-size:14px;
+
+    margin-top:5px;
+
+    color:#fff;
+
+    opacity:.7;
+}
+
+
+/* ================= INTRO ================= */
+
+.intro{
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:
+        110px
+        7vw
+        90px;
+}
+
+
+.intro-label{
+    color:#e00000;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    margin-bottom:25px;
+}
+
+
+.intro h2{
+    font-family:'Oswald',sans-serif;
+
+    font-size:
+        clamp(36px,6vw,76px);
+
+    font-weight:400;
+
+    line-height:1.05;
+
+    max-width:850px;
+}
+
+
+.intro p{
+    max-width:700px;
+
+    margin-top:35px;
+
+    color:#aaa;
+
+    font-size:16px;
+
+    line-height:1.9;
+}
+
+
+/* ================= THOUGHT GRID ================= */
+
+.thoughts{
+    padding:
+        30px
+        5vw
+        100px;
+
+    max-width:1400px;
+
+    margin:auto;
+}
+
+
+.thought-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(12,1fr);
+
+    gap:22px;
+}
+
+
+.card{
+    position:relative;
+
+    min-height:430px;
+
+    overflow:hidden;
+
+    background:#191919;
+
+    cursor:pointer;
+}
+
+
+.card:nth-child(1){
+    grid-column:span 7;
+}
+
+
+.card:nth-child(2){
+    grid-column:span 5;
+}
+
+
+.card:nth-child(3){
+    grid-column:span 5;
+}
+
+
+.card:nth-child(4){
+    grid-column:span 7;
+}
+
+
+.card:nth-child(5){
+    grid-column:span 7;
+}
+
+
+.card:nth-child(6){
+    grid-column:span 5;
+}
+
+
+.card img{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:
+        grayscale(100%)
+        contrast(1.15)
+        brightness(.6);
+
+    transition:
+        transform .7s ease,
+        filter .5s ease;
+}
+
+
+.card:hover img{
+    transform:scale(1.06);
+
+    filter:
+        grayscale(100%)
+        contrast(1.2)
+        brightness(.72);
+}
+
+
+.card::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.94),
+            rgba(0,0,0,.05) 70%
+        );
+}
+
+
+.card-content{
+    position:absolute;
+
+    left:30px;
+    right:30px;
+    bottom:30px;
+
+    z-index:2;
+}
+
+
+.card-number{
+    font-family:'Oswald',sans-serif;
+
+    font-size:13px;
+
+    color:#e00000;
+
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+}
+
+
+/* ================= CARD TITLE RED ================= */
+
+.card h3{
+    font-family:'Oswald',sans-serif;
+
+    font-size:
+        clamp(27px,4vw,48px);
+
+    font-weight:400;
+
+    line-height:1.05;
+
+    max-width:650px;
+
+    color:#e00000;
+}
+
+
+.card p{
+    margin-top:14px;
+
+    color:#ddd;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    max-width:600px;
+}
+
+
+/* ================= READ BUTTON RED ================= */
+
+.read{
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:9px 17px;
+
+    border:1px solid #e00000;
+
+    background:#e00000;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:12px;
+
+    letter-spacing:1.5px;
+
+    color:#fff;
+
+    transition:.25s;
+}
+
+
+.read:hover{
+    background:#fff;
+
+    border-color:#fff;
+
+    color:#e00000;
+}
+
+
+/* ================= QUOTE ================= */
+
+.quote{
+    margin:
+        20px
+        5vw
+        100px;
+
+    padding:
+        70px
+        7vw;
+
+    border-top:1px solid #333;
+    border-bottom:1px solid #333;
+}
+
+
+.quote p{
+    font-family:'Oswald',sans-serif;
+
+    font-size:
+        clamp(32px,6vw,75px);
+
+    font-weight:300;
+
+    line-height:1.05;
+
+    max-width:1100px;
+}
+
+
+.quote span{
+    color:#e00000;
+}
+
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:200;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.88);
+
+    backdrop-filter:blur(12px);
+}
+
+
+.modal.active{
+    display:flex;
+}
+
+
+.modal-box{
+    position:relative;
+
+    width:min(900px,100%);
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    padding:
+        55px
+        7vw;
+
+    background:#151515;
+
+    border:1px solid #333;
+}
+
+
+.modal-number{
+    color:#e00000;
+
+    font-family:'Oswald',sans-serif;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+
+    margin-bottom:20px;
+}
+
+
+.modal h2{
+    font-family:'Oswald',sans-serif;
+
+    font-size:
+        clamp(40px,7vw,80px);
+
+    font-weight:400;
+
+    line-height:1;
+
+    margin-bottom:30px;
+
+    color:#e00000;
+}
+
+
+.modal p{
+    color:#bbb;
+
+    line-height:1.9;
+
+    font-size:15px;
+
+    margin-bottom:20px;
+}
+
+
+.close{
+    position:absolute;
+
+    right:20px;
+    top:15px;
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:25px;
+
+    color:#fff;
+
+    cursor:pointer;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:
+        50px
+        7vw;
+
+    border-top:1px solid #222;
+
+    text-align:center;
+}
+
+
+footer p{
+    font-family:'Oswald',sans-serif;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    color:#777;
+}
+
+
+/* ================= LIGHT MODE ================= */
+
+body.light{
+    background:#f4f4f4;
+    color:#111;
+}
+
+
+body.light header{
+    background:rgba(255,255,255,.94);
+}
+
+
+body.light header a{
+    color:#111;
+}
+
+
+body.light .theme-button{
+    background:#fff;
+    border-color:#111;
+}
+
+
+body.light .hero{
+    background:#ddd;
+}
+
+
+body.light .hero::before{
+    background:#ddd;
+}
+
+
+body.light .hero-image{
+    filter:
+        grayscale(100%)
+        contrast(1.05)
+        brightness(.9);
+}
+
+
+body.light .hero::after{
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0) 0%,
+            rgba(255,255,255,.15) 40%,
+            rgba(255,255,255,.92) 100%
+        );
+}
+
+
+body.light .hero-title{
+    color:#e00000;
+}
+
+
+body.light .hero-subtitle{
+    color:#222;
+}
+
+
+body.light .hero-subtitle span{
+    color:#222;
+}
+
+
+body.light .intro p{
+    color:#555;
+}
+
+
+body.light .card{
+    background:#ddd;
+}
+
+
+body.light .card img{
+    filter:
+        grayscale(100%)
+        contrast(1.05)
+        brightness(.85);
+}
+
+
+body.light .card::after{
+    background:
+        linear-gradient(
+            to top,
+            rgba(255,255,255,.96),
+            rgba(255,255,255,.05) 75%
+        );
+}
+
+
+body.light .card h3{
+    color:#e00000;
+}
+
+
+body.light .card p{
+    color:#444;
+}
+
+
+body.light .read{
+    color:#fff;
+    background:#e00000;
+    border-color:#e00000;
+}
+
+
+body.light .read:hover{
+    background:#111;
+    border-color:#111;
+    color:#fff;
+}
+
+
+body.light .quote{
+    border-color:#ccc;
+}
+
+
+body.light .modal{
+    background:rgba(255,255,255,.88);
+}
+
+
+body.light .modal-box{
+    background:#f5f5f5;
+    border-color:#ccc;
+}
+
+
+body.light .modal h2{
+    color:#e00000;
+}
+
+
+body.light .modal p{
+    color:#444;
+}
+
+
+body.light .close{
+    color:#111;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    header{
+        gap:15px;
+
+        padding:
+            13px
+            45px
+            13px
+            8px;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Raleway', sans-serif;
-      background: #111;
-      color: #fff;
-      transition: background 0.3s, color 0.3s;
+
+    header a{
+        font-size:11px;
+        letter-spacing:.5px;
     }
 
 
-    /* =========================
-       MENU
-       ========================= */
+    .theme-button{
+        right:12px;
 
-    header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      padding: 15px 55px 15px 10px;
-      background: rgba(0, 0, 0, 0.9);
-      font-size: 13px;
-      flex-wrap: wrap;
-      position: relative;
-      transition: background 0.3s;
-    }
-
-    header a {
-      color: #fff;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    header a:hover {
-      color: #ff0000;
+        width:21px;
+        height:21px;
     }
 
 
-    /* =========================
-       THEME BUTTON
-       ========================= */
-
-    .theme-button {
-      position: absolute;
-      right: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-
-      width: 24px;
-      height: 24px;
-
-      border-radius: 50%;
-      border: 2px solid #fff;
-
-      background: #111;
-      cursor: pointer;
-
-      transition:
-        background 0.3s,
-        border-color 0.3s,
-        transform 0.2s;
-    }
-
-    .theme-button:hover {
-      transform: translateY(-50%) scale(1.12);
+    .hero{
+        min-height:70vh;
     }
 
 
-    /* =========================
-       LIGHT MODE
-       ========================= */
-
-    body.light-mode {
-      background: #fff;
-      color: #111;
-    }
-
-    body.light-mode header {
-      background: rgba(255, 255, 255, 0.95);
-    }
-
-    body.light-mode header a {
-      color: #111;
-    }
-
-    body.light-mode header a:hover {
-      color: #ff0000;
-    }
-
-    body.light-mode .theme-button {
-      background: #fff;
-      border-color: #111;
-    }
-
-    body.light-mode .page-title p {
-      color: #444;
-    }
-
-    body.light-mode .article h2 {
-      color: #ff0000;
-    }
-
-    body.light-mode .thai-title {
-      color: #555;
-    }
-
-    body.light-mode .article p {
-      color: #222;
-    }
-
-    body.light-mode .thai {
-      color: #555;
-    }
-
-    body.light-mode .highlight {
-      color: #111;
-    }
-
-    body.light-mode .thai-highlight {
-      color: #555;
-    }
-
-    body.light-mode .divider {
-      background: #bbb;
+    .hero-image{
+        transform:scale(.90);
     }
 
 
-    /* =========================
-       PAGE TITLE
-       ========================= */
+    .hero-content{
+        padding:
+            70px
+            6vw
+            28px;
 
-    .page-title {
-      text-align: center;
-      padding: 60px 20px 30px;
-    }
-
-    .page-title h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 42px;
-      color: #ff0000;
-      margin: 0;
-      text-shadow: 2px 2px 8px #000;
-    }
-
-    .page-title p {
-      font-size: 17px;
-      color: #ccc;
-      margin-top: 12px;
-      transition: color 0.3s;
+        transform:translateY(7em);
     }
 
 
-    /* =========================
-       ARTICLE
-       ========================= */
+    .hero-title{
+        font-size:72px;
 
-    .article {
-      max-width: 850px;
-      margin: 0 auto 80px;
-      padding: 0 20px;
+        letter-spacing:-2px;
+
+        color:#e00000;
     }
 
 
-    /* =========================
-       รูปบทความ
-       ========================= */
-
-    .article-image {
-      width: 100%;
-      max-width: 850px;
-      height: 350px;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto 35px;
-      border-radius: 8px;
+    .hero-subtitle{
+        font-size:14px;
+        line-height:1.6;
     }
 
 
-    /* =========================
-       หัวข้อ
-       ========================= */
-
-    .article h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 32px;
-      color: #ff0000;
-      margin-bottom: 10px;
+    .hero-subtitle span{
+        font-size:13px;
     }
 
 
-    /* =========================
-       หัวข้อภาษาไทย
-       ========================= */
-
-    .thai-title {
-      font-size: 22px;
-      color: #ccc;
-      margin-bottom: 30px;
-      line-height: 1.6;
+    .intro{
+        padding:
+            75px
+            7vw
+            60px;
     }
 
 
-    /* =========================
-       เนื้อหา
-       ========================= */
-
-    .article p {
-      font-size: 17px;
-      line-height: 1.9;
-      color: #eee;
-      margin-bottom: 12px;
-      transition: color 0.3s;
+    .intro p{
+        font-size:14px;
     }
 
 
-    /* =========================
-       ภาษาไทย
-       ========================= */
-
-    .thai {
-      color: #aaa;
-      margin-bottom: 30px;
-      transition: color 0.3s;
+    .thought-grid{
+        display:block;
     }
 
 
-    /* =========================
-       HIGHLIGHT
-       ========================= */
+    .card{
+        min-height:390px;
 
-    .highlight {
-      font-family: 'Oswald', sans-serif;
-      font-size: 25px;
-      color: #fff;
-      text-align: center;
-      margin: 45px 0 10px;
-      line-height: 1.5;
-      transition: color 0.3s;
+        margin-bottom:18px;
     }
 
 
-    .thai-highlight {
-      font-size: 21px;
-      color: #aaa;
-      text-align: center;
-      margin: 0 0 45px;
-      line-height: 1.6;
-      transition: color 0.3s;
+    .card-content{
+        left:22px;
+        right:22px;
+        bottom:22px;
     }
 
 
-    /* =========================
-       เส้นแบ่ง
-       ========================= */
+    .card h3{
+        font-size:34px;
 
-    .divider {
-      width: 70%;
-      height: 1px;
-      background: #555;
-      margin: 50px auto;
-      transition: background 0.3s;
+        color:#e00000;
     }
 
 
-    /* =========================
-       MOBILE
-       ========================= */
+    .read{
+        background:#e00000;
 
-    @media (max-width: 600px) {
+        border-color:#e00000;
 
-      header {
-        gap: 14px;
-        font-size: 12px;
-        padding-right: 50px;
-      }
-
-      .theme-button {
-        right: 15px;
-      }
-
-      .page-title {
-        padding-top: 45px;
-      }
-
-      .page-title h1 {
-        font-size: 34px;
-      }
-
-      .page-title p {
-        font-size: 15px;
-      }
-
-      .article {
-        padding: 0 15px;
-      }
-
-      .article-image {
-        width: 100%;
-        height: 220px;
-        border-radius: 6px;
-      }
-
-      .article h2 {
-        font-size: 27px;
-      }
-
-      .thai-title {
-        font-size: 19px;
-      }
-
-      .article p {
-        font-size: 15px;
-        line-height: 1.8;
-      }
-
-      .thai {
-        font-size: 15px;
-      }
-
-      .highlight {
-        font-size: 21px;
-      }
-
-      .thai-highlight {
-        font-size: 18px;
-      }
-
+        color:#fff;
     }
 
-  </style>
+
+    .quote{
+        margin:
+            10px
+            6vw
+            70px;
+
+        padding:
+            55px
+            5vw;
+    }
+
+
+    .modal{
+        padding:12px;
+    }
+
+
+    .modal-box{
+        padding:
+            45px
+            25px
+            30px;
+
+        max-height:90vh;
+    }
+
+}
+
+
+/* ================= EXTRA SMALL ================= */
+
+@media(max-width:390px){
+
+    header{
+        gap:10px;
+    }
+
+
+    header a{
+        font-size:10px;
+    }
+
+
+    .hero-title{
+        font-size:65px;
+    }
+
+}
+
+</style>
 
 </head>
-
 
 <body>
 
 
-  <!-- =========================
-       MENU
-       ========================= -->
+<!-- ================= HEADER ================= -->
 
-  <header>
+<header>
 
-    <a href="index.html">Home</a>
+    <a href="index.html">
+        Home
+    </a>
 
-    <a href="whoami.html">Who am I?</a>
+    <a href="whoami.html">
+        Who am I?
+    </a>
 
-    <a href="thoughts.html">Thoughts</a>
+    <a href="thoughts.html">
+        Thoughts
+    </a>
 
-    <a href="stories.html">Stories</a>    
-
-
-    <!-- THEME BUTTON -->
+    <a href="stories.html">
+        Stories
+    </a>
 
     <button
-      class="theme-button"
-      id="themeButton"
-      aria-label="Change theme">
-    </button>
+        class="theme-button"
+        id="themeButton"
+        aria-label="Toggle theme"
+    ></button>
 
-  </header>
-
-
-  <!-- =========================
-       PAGE TITLE
-       ========================= -->
-
-  <section class="page-title">
-
-    <h1>THOUGHTS</h1>
-
-    <p>
-      Thoughts that don't have to stay inside the lines.
-    </p>
-
-    <p class="thai">
-      ความคิดที่ไม่จำเป็นต้องอยู่ในกรอบ
-    </p>
-
-  </section>
+</header>
 
 
-  <!-- =========================
-       ARTICLE
-       ========================= -->
+<!-- ================= HERO ================= -->
 
-  <article class="article">
-
-
-    <!-- =========================
-         รูปบทความ
-         ========================= -->
+<section class="hero">
 
     <img
-      class="article-image"
-      src="https://i.postimg.cc/gcTBNcPz/copilot-image-1789294143007.png"
-      alt="Thoughts">
+        class="hero-image"
+        src="https://i.postimg.cc/FFnRxCfh/IMG-20260917-224337.jpg"
+        alt="Ice"
+    >
+
+    <div class="sunlight"></div>
+
+    <div class="sun-ray"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-number">
+            02 / THOUGHTS
+        </div>
+
+        <h1 class="hero-title">
+            THOUGHTS
+        </h1>
+
+        <div class="hero-subtitle">
+
+            Thoughts that don't have to stay inside the lines.
+
+            <span>
+                ความคิดที่ไม่จำเป็นต้องอยู่ในกรอบ
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         ARTICLE TITLE
-         ========================= -->
+<!-- ================= INTRO ================= -->
+
+<section class="intro">
+
+    <div class="intro-label">
+        NO RULES / NO SINGLE ANSWER
+    </div>
 
     <h2>
-      There Is No Single Definition of Success
+        Sometimes the things we believe
+        aren't really ours.
     </h2>
 
-    <div class="thai-title">
-      ความสำเร็จไม่ได้มีความหมายเพียงแบบเดียว
+    <p>
+        บางครั้งสิ่งที่เราเชื่อ
+        อาจไม่ใช่สิ่งที่เราเลือกเองตั้งแต่แรก
+        แต่เป็นสิ่งที่สังคม ครอบครัว
+        หรือคนรอบตัวบอกเราว่าควรเชื่อ
+    </p>
+
+</section>
+
+
+<!-- ================= THOUGHTS ================= -->
+
+<section class="thoughts">
+
+    <div class="thought-grid">
+
+
+        <!-- 01 -->
+
+        <article
+            class="card"
+            data-modal="modal1"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1400&q=85"
+                alt=""
+            >
+
+            <div class="card-content">
+
+                <div class="card-number">
+                    01
+                </div>
+
+                <h3>
+                    There Is No Single
+                    Definition of Success
+                </h3>
+
+                <p>
+                    ความสำเร็จไม่ได้มีหน้าตาเดียว
+                    และไม่จำเป็นต้องเหมือนของใคร
+                </p>
+
+                <div class="read">
+                    READ
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 02 -->
+
+        <article
+            class="card"
+            data-modal="modal2"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=85"
+                alt=""
+            >
+
+            <div class="card-content">
+
+                <div class="card-number">
+                    02
+                </div>
+
+                <h3>
+                    What People See
+                    vs. What I Know
+                </h3>
+
+                <p>
+                    สิ่งที่คนอื่นมองเห็น
+                    ไม่ได้เท่ากับสิ่งที่เราเป็น
+                </p>
+
+                <div class="read">
+                    READ
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 03 -->
+
+        <article
+            class="card"
+            data-modal="modal3"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=1200&q=85"
+                alt=""
+            >
+
+            <div class="card-content">
+
+                <div class="card-number">
+                    03
+                </div>
+
+                <h3>
+                    Intelligence
+                    Can Be Annoying
+                </h3>
+
+                <p>
+                    ความฉลาดบางครั้งก็ไม่ได้ทำให้ชีวิตง่ายขึ้น
+                </p>
+
+                <div class="read">
+                    READ
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 04 -->
+
+        <article
+            class="card"
+            data-modal="modal4"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85"
+                alt=""
+            >
+
+            <div class="card-content">
+
+                <div class="card-number">
+                    04
+                </div>
+
+                <h3>
+                    I Don't Want To Be
+                    Like Everyone Else
+                </h3>
+
+                <p>
+                    การแตกต่างไม่ได้แปลว่าเราผิด
+                </p>
+
+                <div class="read">
+                    READ
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 05 -->
+
+        <article
+            class="card"
+            data-modal="modal5"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=85"
+                alt=""
+            >
+
+            <div class="card-content">
+
+                <div class="card-number">
+                    05
+                </div>
+
+                <h3>
+                    A Truth
+                    Without Drama
+                </h3>
+
+                <p>
+                    ความจริงบางอย่าง
+                    ไม่จำเป็นต้องถูกเล่าให้กลายเป็นเรื่องดราม่า
+                </p>
+
+                <div class="read">
+                    READ
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 06 -->
+
+        <article
+            class="card"
+            data-modal="modal6"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=85"
+                alt=""
+            >
+
+            <div class="card-content">
+
+                <div class="card-number">
+                    06
+                </div>
+
+                <h3>
+                    Just Think
+                    For Yourself.
+                </h3>
+
+                <p>
+                    ไม่ต้องรีบเชื่อเพียงเพราะทุกคนกำลังเชื่อ
+                </p>
+
+                <div class="read">
+                    READ
+                </div>
+
+            </div>
+
+        </article>
+
     </div>
 
-
-    <!-- =========================
-         PARAGRAPH 1
-         ========================= -->
-
-    <p>
-      We grow up being told that we have to study this way,
-      work this way, earn this much money, and become successful
-      in a certain way.
-    </p>
-
-    <p class="thai">
-      เราเติบโตมากับการถูกบอกว่า
-      เราต้องเรียนแบบนี้ ต้องทำงานแบบนี้
-      ต้องหาเงินให้ได้เท่านี้
-      และต้องประสบความสำเร็จในแบบที่คนอื่นกำหนด
-    </p>
+</section>
 
 
-    <!-- =========================
-         PARAGRAPH 2
-         ========================= -->
+<!-- ================= QUOTE ================= -->
+
+<section class="quote">
 
     <p>
-      But honestly...
+        Walking outside the lines
+        doesn't mean you're
+        <span>lost.</span>
     </p>
 
-    <p class="thai">
-      แต่เอาจริง ๆ แล้ว...
-    </p>
+</section>
 
 
-    <!-- =========================
-         HIGHLIGHT
-         ========================= -->
+<!-- ================= MODAL 01 ================= -->
 
-    <div class="highlight">
-      Who decided that this is the only way a life should be lived?
+<div class="modal" id="modal1">
+
+    <div class="modal-box">
+
+        <div class="close">
+            ×
+        </div>
+
+        <div class="modal-number">
+            01 / THOUGHTS
+        </div>
+
+        <h2>
+            There Is No Single
+            Definition of Success
+        </h2>
+
+        <p>
+            เราถูกสอนมาตั้งแต่เด็กว่า
+            ต้องเรียนให้ดี ต้องมีงานดี
+            ต้องมีเงิน ต้องมีบ้าน
+            ต้องมีอะไรบางอย่างถึงจะเรียกว่าประสบความสำเร็จ
+        </p>
+
+        <p>
+            แต่เมื่อโตขึ้น
+            เราจะเริ่มเห็นว่าชีวิตของแต่ละคน
+            ไม่ได้เริ่มจากจุดเดียวกัน
+            และไม่ได้ต้องการสิ่งเดียวกัน
+        </p>
+
+        <p>
+            สำหรับบางคน การมีเงินเยอะคือความสำเร็จ
+            สำหรับบางคน การมีเวลาคือความสำเร็จ
+            และสำหรับบางคน
+            แค่มีชีวิตที่สงบก็เพียงพอแล้ว
+        </p>
+
     </div>
 
-    <div class="thai-highlight">
-      ใครเป็นคนกำหนดว่า
-      ชีวิตต้องใช้ชีวิตด้วยวิธีนี้เท่านั้น?
+</div>
+
+
+<!-- ================= MODAL 02 ================= -->
+
+<div class="modal" id="modal2">
+
+    <div class="modal-box">
+
+        <div class="close">
+            ×
+        </div>
+
+        <div class="modal-number">
+            02 / THOUGHTS
+        </div>
+
+        <h2>
+            What People See
+            vs. What I Know
+        </h2>
+
+        <p>
+            คนเรามักตัดสินสิ่งต่าง ๆ
+            จากภาพที่มองเห็นได้ง่ายที่สุด
+        </p>
+
+        <p>
+            แต่ชีวิตจริงมีรายละเอียด
+            ที่คนอื่นไม่มีทางเห็นทั้งหมด
+        </p>
+
+        <p>
+            สิ่งที่คนเห็นจึงเป็นเพียงส่วนหนึ่ง
+            ของเรื่องราวทั้งหมดเท่านั้น
+        </p>
+
     </div>
 
-
-    <!-- =========================
-         PARAGRAPH 3
-         ========================= -->
-
-    <p>
-      Why should one person's life have to be measured by the
-      same ruler as someone else's?
-    </p>
-
-    <p class="thai">
-      ทำไมชีวิตของคนหนึ่งคน
-      ถึงต้องถูกวัดด้วยไม้บรรทัดอันเดียวกับชีวิตของคนอื่น?
-    </p>
+</div>
 
 
-    <!-- =========================
-         PARAGRAPH 4
-         ========================= -->
+<!-- ================= MODAL 03 ================= -->
 
-    <p>
-      Some people are good at school but struggle with life.
-      Some people don't have degrees but know how to survive.
-      Some people have money but are not happy.
-      And some people may have almost nothing,
-      yet they still find a way to get up and keep going every day.
-    </p>
+<div class="modal" id="modal3">
 
-    <p class="thai">
-      บางคนเรียนเก่ง แต่ใช้ชีวิตจริงกลับลำบาก
-      บางคนไม่มีวุฒิการศึกษา แต่รู้ว่าจะเอาตัวรอดอย่างไร
-      บางคนมีเงินมากมายแต่ไม่มีความสุข
-      และบางคนแทบไม่มีอะไรเลย
-      แต่ก็ยังหาวิธีลุกขึ้นมาใช้ชีวิตต่อในทุกวัน
-    </p>
+    <div class="modal-box">
 
+        <div class="close">
+            ×
+        </div>
 
-    <!-- =========================
-         HIGHLIGHT
-         ========================= -->
+        <div class="modal-number">
+            03 / THOUGHTS
+        </div>
 
-    <div class="highlight">
-      I don't really believe there is one “right” way to live.
+        <h2>
+            Intelligence
+            Can Be Annoying
+        </h2>
+
+        <p>
+            ความฉลาดไม่ได้ทำให้ทุกอย่างง่ายขึ้นเสมอไป
+        </p>
+
+        <p>
+            บางครั้งการมองเห็นรายละเอียดมากเกินไป
+            กลับทำให้เราเห็นสิ่งที่คนอื่นเลือกจะไม่เห็น
+        </p>
+
+        <p>
+            และนั่นก็ไม่ได้แปลว่าเราต้องเอาชนะใคร
+            แค่รู้ว่าตัวเองคิดอย่างไรก็พอ
+        </p>
+
     </div>
 
-    <div class="thai-highlight">
-      ฉันไม่ได้เชื่อจริง ๆ ว่า
-      มีวิธีใช้ชีวิตที่ “ถูกต้อง” เพียงวิธีเดียว
+</div>
+
+
+<!-- ================= MODAL 04 ================= -->
+
+<div class="modal" id="modal4">
+
+    <div class="modal-box">
+
+        <div class="close">
+            ×
+        </div>
+
+        <div class="modal-number">
+            04 / THOUGHTS
+        </div>
+
+        <h2>
+            I Don't Want To Be
+            Like Everyone Else
+        </h2>
+
+        <p>
+            เราไม่จำเป็นต้องใช้ชีวิต
+            ด้วยมาตรฐานเดียวกับคนอื่น
+        </p>
+
+        <p>
+            การเลือกเส้นทางของตัวเอง
+            อาจทำให้คนอื่นไม่เข้าใจ
+            แต่นั่นไม่ได้ทำให้เส้นทางนั้นผิด
+        </p>
+
+        <p>
+            บางทีการไม่เหมือนใคร
+            ก็เป็นเพียงการยอมรับว่า
+            เราเป็นเรา
+        </p>
+
     </div>
 
-
-    <!-- =========================
-         PARAGRAPH 5
-         ========================= -->
-
-    <p>
-      I believe every person has their own path.
-    </p>
-
-    <p class="thai">
-      ฉันเชื่อว่าทุกคนมีเส้นทางของตัวเอง
-    </p>
+</div>
 
 
-    <!-- =========================
-         PARAGRAPH 6
-         ========================= -->
+<!-- ================= MODAL 05 ================= -->
 
-    <p>
-      And sometimes, walking outside the lines doesn't mean
-      that we are lost.
-    </p>
+<div class="modal" id="modal5">
 
-    <p class="thai">
-      และบางครั้ง
-      การเดินออกนอกเส้นไม่ได้หมายความว่าเราหลงทาง
-    </p>
+    <div class="modal-box">
 
+        <div class="close">
+            ×
+        </div>
 
-    <!-- =========================
-         HIGHLIGHT
-         ========================= -->
+        <div class="modal-number">
+            05 / THOUGHTS
+        </div>
 
-    <div class="highlight">
-      Maybe we simply never wanted to follow the lines
-      someone else drew for us.
+        <h2>
+            A Truth
+            Without Drama
+        </h2>
+
+        <p>
+            ไม่ใช่ทุกความจริง
+            จำเป็นต้องถูกเล่าให้ใหญ่โต
+        </p>
+
+        <p>
+            บางเรื่องก็เป็นเพียงเรื่องหนึ่ง
+            ที่เกิดขึ้นในชีวิต
+            แล้วเราก็เดินต่อ
+        </p>
+
+        <p>
+            ความจริงไม่จำเป็นต้องมีดนตรีประกอบเสมอไป
+        </p>
+
     </div>
 
-    <div class="thai-highlight">
-      บางทีเราอาจไม่เคยต้องการเดินตามเส้น
-      ที่คนอื่นขีดเอาไว้ให้เรา
+</div>
+
+
+<!-- ================= MODAL 06 ================= -->
+
+<div class="modal" id="modal6">
+
+    <div class="modal-box">
+
+        <div class="close">
+            ×
+        </div>
+
+        <div class="modal-number">
+            06 / THOUGHTS
+        </div>
+
+        <h2>
+            Just Think
+            For Yourself.
+        </h2>
+
+        <p>
+            ไม่ต้องรีบเชื่อเพียงเพราะคนส่วนใหญ่เชื่อ
+        </p>
+
+        <p>
+            ฟังได้ อ่านได้
+            แล้วค่อยคิดด้วยตัวเอง
+        </p>
+
+        <p>
+            เพราะสุดท้ายแล้ว
+            ชีวิตของเราไม่ได้มีคนอื่นเป็นคนใช้แทนเรา
+        </p>
+
     </div>
 
+</div>
 
-    <div class="divider"></div>
 
+<!-- ================= FOOTER ================= -->
 
-    <!-- =========================
-         SECOND PART
-         ========================= -->
-
-    <p>
-      This is a place for my thoughts.
-    </p>
-
-    <p class="thai">
-      ที่นี่คือพื้นที่สำหรับความคิดของฉัน
-    </p>
-
+<footer>
 
     <p>
-      Things I question.
-      Things I notice.
-      Things I disagree with.
-      Things I once believed and later changed my mind about.
+        HUMAN OUTSIDE THE LINES
     </p>
 
-    <p class="thai">
-      สิ่งที่ฉันตั้งคำถาม
-      สิ่งที่ฉันสังเกตเห็น
-      สิ่งที่ฉันไม่เห็นด้วย
-      และสิ่งที่ครั้งหนึ่งฉันเคยเชื่อ
-      แต่ภายหลังเปลี่ยนความคิด
-    </p>
+</footer>
 
 
-    <!-- =========================
-         PARAGRAPH
-         ========================= -->
+<script>
 
-    <p>
-      You don't have to agree with me.
-    </p>
+/* ================= THEME ================= */
 
-    <p class="thai">
-      คุณไม่จำเป็นต้องเห็นด้วยกับฉัน
-    </p>
+const themeButton =
+    document.getElementById("themeButton");
 
+const savedTheme =
+    localStorage.getItem("site-theme");
 
-    <div class="highlight">
-      Just think for yourself.
-    </div>
-
-    <div class="thai-highlight">
-      แค่คิดด้วยตัวเอง
-    </div>
+if(savedTheme === "light"){
+    document.body.classList.add("light");
+}
 
 
-    <!-- =========================
-         FINAL
-         ========================= -->
+themeButton.addEventListener("click",()=>{
 
-    <p>
-      Because sometimes the things we believe today
-      are not really our own thoughts.
-    </p>
+    document.body.classList.toggle("light");
 
-    <p class="thai">
-      เพราะบางครั้ง สิ่งที่เราเชื่อในวันนี้
-      อาจไม่ใช่ความคิดของเราเองจริง ๆ
-    </p>
+    localStorage.setItem(
+        "site-theme",
+        document.body.classList.contains("light")
+            ? "light"
+            : "dark"
+    );
 
-
-    <p>
-      Sometimes they are simply lines
-      someone else drew for us a long time ago.
-    </p>
-
-    <p class="thai">
-      บางครั้งมันก็เป็นเพียงเส้น
-      ที่คนอื่นขีดเอาไว้ให้เราตั้งนานแล้ว
-    </p>
+});
 
 
-  </article>
+/* ================= MODALS ================= */
+
+const cards =
+    document.querySelectorAll(".card");
+
+const modals =
+    document.querySelectorAll(".modal");
 
 
-  <!-- =========================
-       THEME SCRIPT
-       ========================= -->
+cards.forEach(card => {
 
-  <script>
+    card.addEventListener("click",()=>{
 
-    const themeButton =
-      document.getElementById("themeButton");
+        const modalId =
+            card.getAttribute("data-modal");
 
+        const modal =
+            document.getElementById(modalId);
 
-    function setTheme(theme) {
+        if(modal){
+            modal.classList.add("active");
+        }
 
-      if (theme === "light") {
+    });
 
-        document.body.classList.add("light-mode");
-
-        localStorage.setItem(
-          "site-theme",
-          "light"
-        );
-
-      } else {
-
-        document.body.classList.remove("light-mode");
-
-        localStorage.setItem(
-          "site-theme",
-          "dark"
-        );
-
-      }
-
-    }
+});
 
 
-    themeButton.addEventListener(
-      "click",
-      function() {
+modals.forEach(modal => {
 
-        if (
-          document.body.classList.contains(
-            "light-mode"
-          )
-        ) {
+    const close =
+        modal.querySelector(".close");
 
-          setTheme("dark");
 
-        } else {
+    close.addEventListener("click",()=>{
 
-          setTheme("light");
+        modal.classList.remove("active");
+
+    });
+
+
+    modal.addEventListener("click",(e)=>{
+
+        if(e.target === modal){
+
+            modal.classList.remove("active");
 
         }
 
-      }
-    );
+    });
+
+});
 
 
-    const savedTheme =
-      localStorage.getItem("site-theme");
+document.addEventListener("keydown",(e)=>{
 
+    if(e.key === "Escape"){
 
-    if (savedTheme === "light") {
+        modals.forEach(modal => {
 
-      setTheme("light");
+            modal.classList.remove("active");
 
-    } else {
-
-      setTheme("dark");
+        });
 
     }
 
-  </script>
+});
 
+</script>
 
 </body>
-
 </html>
