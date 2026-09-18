@@ -14,17 +14,12 @@
 
 <title>Human Outside the Lines</title>
 
-<!-- =========================
-     FACEBOOK / OPEN GRAPH
-========================= -->
-
 <meta property="og:title" content="Human Outside the Lines">
 <meta property="og:description" content="ฉันไม่ได้พยายามจะอยู่ในเส้นที่ใครวางเอาไว้">
 <meta property="og:image" content="https://i.postimg.cc/5tFv16Pw/Beauty-Plus-20260917153713923-save.jpg">
 <meta property="og:url" content="https://standby-ice.github.io/human-outside-the-lines/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Human Outside the Lines">
-
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -69,22 +64,17 @@ body{
 
 .intro{
     position:fixed;
-
     inset:0;
-
     z-index:99999;
-
     background:#050505;
 
     display:flex;
-
     justify-content:center;
     align-items:center;
 
     overflow:hidden;
 
     opacity:1;
-
     visibility:visible;
 
     transition:
@@ -92,32 +82,18 @@ body{
         visibility 1.2s ease;
 }
 
-
-/* หลังเพลงจบ */
-
 .intro.hide{
     opacity:0;
     visibility:hidden;
     pointer-events:none;
 }
 
-
-/* =========================
-   IMAGE ASSEMBLY
-========================= */
-
 .intro-image{
     position:relative;
-
     width:min(72vw,430px);
-
     aspect-ratio:3 / 4;
-
     overflow:visible;
 }
-
-
-/* แต่ละเศษของรูป */
 
 .image-piece{
     position:absolute;
@@ -125,20 +101,15 @@ body{
     width:25%;
     height:25%;
 
-    background-image:
-        url("https://i.postimg.cc/5tFv16Pw/Beauty-Plus-20260917153713923-save.jpg");
+    background-image:url("https://i.postimg.cc/5tFv16Pw/Beauty-Plus-20260917153713923-save.jpg");
 
     background-size:400% 400%;
-
     background-repeat:no-repeat;
 
     opacity:0;
 
     transform:
-        translate(
-            var(--x),
-            var(--y)
-        )
+        translate(var(--x),var(--y))
         rotate(var(--r))
         scale(.65);
 
@@ -152,12 +123,8 @@ body{
         opacity .45s ease,
         filter 1s ease;
 
-    box-shadow:
-        0 0 0 rgba(0,0,0,0);
+    box-shadow:0 0 0 rgba(0,0,0,0);
 }
-
-
-/* เมื่อเริ่มประกอบ */
 
 .intro.assemble .image-piece{
     opacity:1;
@@ -176,17 +143,11 @@ body{
         0 12px 40px rgba(0,0,0,.25);
 }
 
-
-/* =========================
-   RED LINE
-========================= */
-
 .intro-line{
     position:absolute;
 
     left:10%;
     right:10%;
-
     top:50%;
 
     height:1px;
@@ -207,20 +168,13 @@ body{
 
 .intro.assemble .intro-line{
     opacity:1;
-
     transform:scaleX(1);
 }
-
-
-/* =========================
-   INTRO TEXT
-========================= */
 
 .intro-text{
     position:absolute;
 
     bottom:13%;
-
     left:0;
     right:0;
 
@@ -229,7 +183,6 @@ body{
     font-family:'Oswald',sans-serif;
 
     letter-spacing:4px;
-
     font-size:10px;
 
     color:rgba(255,255,255,.55);
@@ -245,10 +198,8 @@ body{
 
 .intro.assemble .intro-text{
     opacity:1;
-
     transform:translateY(0);
 }
-
 
 .intro-text span{
     color:#e00000;
@@ -256,18 +207,16 @@ body{
 
 
 /* ==================================================
-   TAP TO ENTER
+   START BUTTON
 ================================================== */
 
 .start-hint{
     position:absolute;
 
-    bottom:6.5%;
-
+    top:50%;
     left:50%;
 
-    transform:
-        translateX(-50%);
+    transform:translate(-50%,-50%);
 
     width:min(78vw,330px);
 
@@ -294,9 +243,6 @@ body{
         visibility .5s ease;
 }
 
-
-/* กรอบชั้นใน */
-
 .start-hint::before{
     content:"";
 
@@ -307,13 +253,12 @@ body{
     bottom:5px;
     left:5px;
 
-    border:1px solid rgba(255,255,255,.85);
+    border:
+        1px solid
+        rgba(255,255,255,.85);
 
     pointer-events:none;
 }
-
-
-/* ข้อความอังกฤษ */
 
 .start-main{
     position:relative;
@@ -329,11 +274,9 @@ body{
     line-height:1.2;
 
     animation:
-        enterBlink 2s ease-in-out infinite;
+        enterBlink
+        2s ease-in-out infinite;
 }
-
-
-/* ข้อความไทย */
 
 .start-sub{
     position:relative;
@@ -351,19 +294,11 @@ body{
     color:rgba(255,255,255,.65);
 }
 
-
-/* เมื่อเริ่มแล้ว */
-
 .intro.assemble .start-hint{
     opacity:0;
-
     visibility:hidden;
-
     pointer-events:none;
 }
-
-
-/* กระพริบเบา ๆ */
 
 @keyframes enterBlink{
 
@@ -385,7 +320,6 @@ body{
 
 .background{
     position:fixed;
-
     inset:0;
 
     z-index:-5;
@@ -396,7 +330,8 @@ body{
             rgba(0,0,0,.94)
         ),
         url("https://i.postimg.cc/5tFv16Pw/Beauty-Plus-20260917153713923-save.jpg")
-        center/cover no-repeat;
+        center/cover
+        no-repeat;
 
     filter:grayscale(100%);
 
@@ -421,7 +356,6 @@ header{
     display:flex;
 
     justify-content:space-between;
-
     align-items:center;
 
     z-index:50;
@@ -447,7 +381,7 @@ header{
 
 
 /* ==================================================
-   MAIN SCREEN
+   HERO
 ================================================== */
 
 .hero{
@@ -462,11 +396,6 @@ header{
 
     padding-top:48px;
 }
-
-
-/* ==================================================
-   BACKGROUND WORD
-================================================== */
 
 .background-word{
     position:absolute;
@@ -495,11 +424,6 @@ header{
     color:#e00000;
 }
 
-
-/* ==================================================
-   LABEL
-================================================== */
-
 .top-label{
     position:absolute;
 
@@ -516,11 +440,6 @@ header{
 
     z-index:20;
 }
-
-
-/* ==================================================
-   PHOTO
-================================================== */
 
 .photo{
     position:absolute;
@@ -542,7 +461,9 @@ header{
 
     z-index:5;
 
-    border:1px solid rgba(255,255,255,.45);
+    border:
+        1px solid
+        rgba(255,255,255,.45);
 
     clip-path:
         polygon(
@@ -557,9 +478,13 @@ header{
         );
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,.85);
+        0 25px 70px
+        rgba(0,0,0,.85);
 
-    animation:photoIn 1s ease forwards;
+    animation:
+        photoIn
+        1s ease
+        forwards;
 }
 
 .photo img{
@@ -576,11 +501,6 @@ header{
         brightness(.96);
 }
 
-
-/* ==================================================
-   RED SCAN
-================================================== */
-
 .scan{
     position:absolute;
 
@@ -594,11 +514,15 @@ header{
     background:#e00000;
 
     box-shadow:
-        0 0 12px rgba(224,0,0,.9);
+        0 0 12px
+        rgba(224,0,0,.9);
 
     z-index:15;
 
-    animation:scan 4s ease-in-out infinite;
+    animation:
+        scan
+        4s ease-in-out
+        infinite;
 }
 
 .scan-number{
@@ -616,20 +540,17 @@ header{
     color:#e00000;
 }
 
-
-/* ==================================================
-   SIDE TEXT
-================================================== */
-
 .side-text{
     position:absolute;
 
     left:4px;
     top:260px;
 
-    transform:rotate(-90deg);
+    transform:
+        rotate(-90deg);
 
-    transform-origin:left top;
+    transform-origin:
+        left top;
 
     font-family:'Oswald',sans-serif;
 
@@ -644,16 +565,10 @@ header{
     z-index:20;
 }
 
-
-/* ==================================================
-   MAIN TITLE
-================================================== */
-
 .hero-title{
     position:absolute;
 
     top:292px;
-
     left:7%;
 
     font-family:'Oswald',sans-serif;
@@ -669,7 +584,8 @@ header{
     z-index:25;
 
     text-shadow:
-        0 5px 25px rgba(0,0,0,.9);
+        0 5px 25px
+        rgba(0,0,0,.9);
 }
 
 .hero-title .red{
@@ -678,7 +594,7 @@ header{
 
 
 /* ==================================================
-   TEXT AREA
+   CONTENT
 ================================================== */
 
 .content{
@@ -691,11 +607,6 @@ header{
 
     z-index:30;
 }
-
-
-/* ==================================================
-   NOT MADE TO FIT
-================================================== */
 
 .description{
     margin-bottom:15px;
@@ -738,13 +649,10 @@ header{
     color:rgba(255,255,255,.88);
 }
 
-
-/* ==================================================
-   IDEA
-================================================== */
-
 .idea{
-    border-top:1px solid rgba(255,255,255,.18);
+    border-top:
+        1px solid
+        rgba(255,255,255,.18);
 
     padding-top:11px;
 }
@@ -789,7 +697,7 @@ header{
 
 
 /* ==================================================
-   ENTER
+   ENTER LINK
 ================================================== */
 
 .enter{
@@ -836,7 +744,7 @@ header{
 
 
 /* ==================================================
-   ANIMATION
+   ANIMATIONS
 ================================================== */
 
 @keyframes photoIn{
@@ -860,6 +768,7 @@ header{
             rotate(-2deg)
             scale(1);
     }
+
 }
 
 @keyframes scan{
@@ -878,23 +787,27 @@ header{
         opacity:.25;
         transform:translateY(-35px);
     }
+
 }
 
 
 /* ==================================================
-   SMALL PHONE
+   MOBILE HEIGHT
 ================================================== */
 
 @media(max-height:680px){
 
     .photo{
         top:76px;
+
         height:31vh;
+
         min-height:205px;
     }
 
     .hero-title{
         top:252px;
+
         font-size:14vw;
     }
 
@@ -927,7 +840,6 @@ header{
     }
 
     .start-hint{
-        bottom:5%;
         width:82vw;
     }
 
@@ -935,13 +847,14 @@ header{
 
 
 /* ==================================================
-   TALL PHONE
+   TALL MOBILE
 ================================================== */
 
 @media(min-height:780px) and (max-width:599px){
 
     .photo{
         height:38vh;
+
         max-height:330px;
     }
 
@@ -972,8 +885,11 @@ header{
 
     .photo{
         width:52%;
+
         max-width:560px;
+
         height:50vh;
+
         max-height:470px;
 
         top:90px;
@@ -981,6 +897,7 @@ header{
 
     .hero-title{
         left:10%;
+
         top:407px;
 
         font-size:10vw;
@@ -1011,37 +928,24 @@ header{
 
 </head>
 
-
 <body>
 
 
-<!-- ==================================================
-     INTRO OVERLAY
-================================================== -->
-
-<div
-    class="intro"
-    id="intro"
->
-
+<div class="intro" id="intro">
 
     <div
         class="intro-image"
         id="introImage"
     ></div>
 
-
     <div class="intro-line"></div>
 
-
     <div class="intro-text">
-
-        HUMAN <span>OUTSIDE</span> THE LINES
-
+        HUMAN
+        <span>OUTSIDE</span>
+        THE LINES
     </div>
 
-
-    <!-- TAP TO ENTER -->
 
     <button
         class="start-hint"
@@ -1061,11 +965,10 @@ header{
     </button>
 
 
-    <!-- เพลง -->
-
     <audio
         id="backgroundMusic"
         preload="auto"
+        style="display:none;"
     >
 
         <source
@@ -1075,13 +978,8 @@ header{
 
     </audio>
 
-
 </div>
 
-
-<!-- ==================================================
-     ORIGINAL HOMEPAGE
-================================================== -->
 
 <div class="background"></div>
 
@@ -1100,7 +998,6 @@ header{
 
 
 <section class="hero">
-
 
     <div class="background-word">
 
@@ -1155,7 +1052,6 @@ header{
 
     <div class="content">
 
-
         <div class="description">
 
             <div class="description-title">
@@ -1163,10 +1059,8 @@ header{
             </div>
 
             <div class="description-text">
-
                 ฉันไม่ได้พยายามจะอยู่
                 ในเส้นที่ใครวางเอาไว้
-
             </div>
 
         </div>
@@ -1182,7 +1076,10 @@ header{
 
                 BREAK<br>
                 THE<br>
-                <span>LINE.</span>
+
+                <span>
+                    LINE.
+                </span>
 
             </div>
 
@@ -1200,7 +1097,6 @@ header{
 
         </div>
 
-
     </div>
 
 
@@ -1217,42 +1113,46 @@ header{
 
     </a>
 
-
 </section>
 
 
 <script>
 
-/* ==================================================
-   CREATE IMAGE PIECES
-================================================== */
+const intro =
+    document.getElementById("intro");
 
-const intro = document.getElementById("intro");
-const introImage = document.getElementById("introImage");
-const music = document.getElementById("backgroundMusic");
-const startHint = document.getElementById("startHint");
+const introImage =
+    document.getElementById("introImage");
+
+const music =
+    document.getElementById("backgroundMusic");
+
+const startHint =
+    document.getElementById("startHint");
 
 
 const rows = 4;
 const cols = 4;
 
 
-/*
-    สร้างรูปเป็น 16 เศษ
-*/
+for(
+    let row = 0;
+    row < rows;
+    row++
+){
 
-for(let row = 0; row < rows; row++){
+    for(
+        let col = 0;
+        col < cols;
+        col++
+    ){
 
-    for(let col = 0; col < cols; col++){
+        const piece =
+            document.createElement("div");
 
-        const piece = document.createElement("div");
+        piece.className =
+            "image-piece";
 
-        piece.className = "image-piece";
-
-
-        /*
-            ตำแหน่งรูปแต่ละชิ้น
-        */
 
         piece.style.left =
             (col * 25) + "%";
@@ -1266,18 +1166,17 @@ for(let row = 0; row < rows; row++){
             (row * 100 / 3) + "%";
 
 
-        /*
-            จุดเริ่มต้นแบบกระจาย
-        */
-
         const x =
-            (Math.random() * 260 - 130) + "px";
+            (Math.random() * 260 - 130)
+            + "px";
 
         const y =
-            (Math.random() * 420 - 210) + "px";
+            (Math.random() * 420 - 210)
+            + "px";
 
         const r =
-            (Math.random() * 70 - 35) + "deg";
+            (Math.random() * 70 - 35)
+            + "deg";
 
 
         piece.style.setProperty(
@@ -1296,12 +1195,9 @@ for(let row = 0; row < rows; row++){
         );
 
 
-        /*
-            ทำให้แต่ละชิ้นเข้าคนละจังหวะ
-        */
-
         piece.style.transitionDelay =
-            (Math.random() * .45) + "s";
+            (Math.random() * .45)
+            + "s";
 
 
         introImage.appendChild(piece);
@@ -1310,10 +1206,6 @@ for(let row = 0; row < rows; row++){
 
 }
 
-
-/* ==================================================
-   START INTRO
-================================================== */
 
 let started = false;
 
@@ -1327,16 +1219,14 @@ function startIntro(){
     started = true;
 
 
-    /*
-        เริ่มเพลง
-    */
-
     music.play()
+
         .then(() => {
 
             startVisual();
 
         })
+
         .catch(() => {
 
             started = false;
@@ -1346,13 +1236,11 @@ function startIntro(){
 }
 
 
-/* ==================================================
-   START VISUAL
-================================================== */
-
 function startVisual(){
 
-    intro.classList.add("assemble");
+    intro.classList.add(
+        "assemble"
+    );
 
 }
 
@@ -1375,11 +1263,9 @@ music.addEventListener(
     "ended",
     () => {
 
-        /*
-            รูป Intro หายออก
-        */
-
-        intro.classList.add("hide");
+        intro.classList.add(
+            "hide"
+        );
 
     }
 );
@@ -1389,30 +1275,25 @@ music.addEventListener(
    SAFETY
 ================================================== */
 
-
-/*
-    ถ้าไฟล์เพลงโหลดไม่ได้
-    Intro จะไม่ค้างตลอดไป
-
-    หลังจาก 15 วินาที
-    ให้หน้าแรกกลับมา
-*/
-
 music.addEventListener(
     "error",
     () => {
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            intro.classList.add("hide");
+                intro.classList.add(
+                    "hide"
+                );
 
-        }, 1500);
+            },
+            1500
+        );
 
     }
 );
 
 </script>
-
 
 </body>
 </html>
